@@ -20,13 +20,18 @@ classifiers = [
 
 dependencies = [
     "anthropic>=0.75.0",
+    "datasets>=4.6.1",
     "google-genai>=1.56.0",
+    "huggingface-hub>=1.6.0",
     "openai>=2.14.0",
+    "opencv-python-headless>=4.13.0.92",
+    "pillow>=12.1.1",
     "portkey-ai>=2.1.0",
     "pytest>=9.0.2",
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
     "rich>=13.0.0",
+    "yt-dlp>=2026.3.3",
 ]
 
 [project.urls]
