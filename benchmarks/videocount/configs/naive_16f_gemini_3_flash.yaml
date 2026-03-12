@@ -1,0 +1,13 @@
+name: naive_16f_gemini_3_flash
+description: "Naive single-shot baseline: 16 uniform frames, Gemini 3 Flash Preview"
+
+mode: naive
+vlm_model: gemini-3-flash-preview
+n_frames: 16
+
+dataset:
+  split: val
+  video_cache_dir: /tmp/rvlm_videos
+
+output:
+  results_dir: benchmarks/videocount/results

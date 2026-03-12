@@ -1,0 +1,25 @@
+name: rvlm_d1_v1_claude
+description: "RVLM depth=1, counting prompt V1, Claude Sonnet for both reasoning and VLM"
+
+mode: rvlm
+
+backend: anthropic
+backend_kwargs:
+  model_name: claude-sonnet-4-5
+  max_tokens: 2048
+
+vlm_model: claude-sonnet-4-5
+
+max_depth: 1
+max_iterations: 8
+max_tokens: 200000
+
+prompt_variant: v1
+
+dataset:
+  split: val
+  video_cache_dir: /tmp/rvlm_videos
+
+output:
+  results_dir: benchmarks/videocount/results
+  log_trajectories: true

@@ -1,0 +1,25 @@
+name: rvlm_d1_v1_gemini_flash
+description: "RVLM depth=1, counting prompt V1, Gemini 2.0 Flash for both reasoning and VLM"
+
+mode: rvlm
+
+backend: gemini
+backend_kwargs:
+  model_name: gemini-2.0-flash
+  max_tokens: 2048
+
+vlm_model: gemini-2.0-flash
+
+max_depth: 1
+max_iterations: 8
+max_tokens: 200000
+
+prompt_variant: v1
+
+dataset:
+  split: val
+  video_cache_dir: /tmp/rvlm_videos
+
+output:
+  results_dir: benchmarks/videocount/results
+  log_trajectories: true

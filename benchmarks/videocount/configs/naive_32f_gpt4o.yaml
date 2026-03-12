@@ -1,0 +1,13 @@
+name: naive_32f_gpt4o
+description: "Naive single-shot baseline: 32 uniform frames, GPT-4o"
+
+mode: naive
+vlm_model: gpt-4o
+n_frames: 32
+
+dataset:
+  split: val
+  video_cache_dir: /tmp/rvlm_videos
+
+output:
+  results_dir: benchmarks/videocount/results

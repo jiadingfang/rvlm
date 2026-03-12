@@ -1,0 +1,13 @@
+name: naive_16f_gemini_25_pro
+description: "Naive single-shot baseline: 16 uniform frames, Gemini 2.5 Pro"
+
+mode: naive
+vlm_model: gemini-2.5-pro
+n_frames: 16
+
+dataset:
+  split: val
+  video_cache_dir: /tmp/rvlm_videos
+
+output:
+  results_dir: benchmarks/videocount/results
