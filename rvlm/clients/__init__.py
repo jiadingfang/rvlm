@@ -7,8 +7,10 @@ _VLM_REGISTRY = {
     "gpt-4.1": (OpenAIVLMClient, {"model_name": "gpt-4.1"}),
     "gpt-4.1-mini": (OpenAIVLMClient, {"model_name": "gpt-4.1-mini"}),
     "gemini-2.0-flash": (GeminiVLMClient, {"model_name": "gemini-2.0-flash"}),
+    "gemini-2.5-flash": (GeminiVLMClient, {"model_name": "gemini-2.5-flash"}),
     "gemini-2.5-flash-preview-04-17": (GeminiVLMClient, {"model_name": "gemini-2.5-flash-preview-04-17"}),
     "gemini-2.5-pro": (GeminiVLMClient, {"model_name": "gemini-2.5-pro"}),
+    "gemini-3-flash-preview": (GeminiVLMClient, {"model_name": "gemini-3-flash-preview"}),
     "claude-sonnet-4-5": (AnthropicVLMClient, {"model_name": "claude-sonnet-4-5"}),
     "claude-sonnet-4-6": (AnthropicVLMClient, {"model_name": "claude-sonnet-4-6"}),
 }

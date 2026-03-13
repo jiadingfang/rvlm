@@ -5,10 +5,10 @@ mode: rvlm
 
 backend: gemini
 backend_kwargs:
-  model_name: gemini-2.0-flash
+  model_name: gemini-2.5-flash
   max_tokens: 2048
 
-vlm_model: gemini-2.0-flash
+vlm_model: gemini-2.5-flash
 
 max_depth: 1
 max_iterations: 8

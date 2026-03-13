@@ -16,6 +16,7 @@ The following functions are available in your REPL:
 - vlm_describe(frames, question) → str (free-form VLM description)
 - count_in_segments(video_path, question, segment_sec=15, frames_per_segment=4,
                     aggregation='max') → int
+{{custom_tools_section}}
 
 The video to analyze is available as the variable: video_path
 The counting question is available as: question
@@ -39,7 +40,7 @@ print(description)
 Get a rough count on the coarse frames.
 ```python
 rough_count = vlm_count(coarse_frames, question)
-print(f"Rough count: {rough_count}, Duration: {meta['duration']:.1f}s")
+print(f"Rough count: {{rough_count}}, Duration: {{meta['duration']:.1f}}s")
 ```
 
 ### Step 3: Decide whether to decompose
@@ -56,7 +57,7 @@ for start, end in split_into_segments(video_path, segment_sec=15):
     frames = resize_frames(frames)
     c = vlm_count(frames, question)
     counts.append(c)
-    print(f"[{start:.0f}s–{end:.0f}s]: {c}")
+    print(f"[{{start:.0f}}s–{{end:.0f}}s]: {{c}}")
 ```
 
 ### Step 5: Aggregate
@@ -69,7 +70,7 @@ When unsure, use **max** and state your reasoning.
 
 ```python
 count = max(counts)   # or sum(counts)
-print(f"Final count: {count}")
+print(f"Final count: {{count}}")
 ```
 
 ### Step 6: Return answer
@@ -84,7 +85,7 @@ FINAL_VAR("count")
   for that segment rather than guessing.
 - Be efficient. Start with low detail (n=8) and only sample more frames if needed.
 - If rlm_query is available and a segment is genuinely complex, you may delegate:
-  result = rlm_query(f"Count {question} in video clip from {start}s to {end}s at {video_path}")
+  result = rlm_query(f"Count {{question}} in video clip from {{start}}s to {{end}}s at {{video_path}}")
   But prefer code-based decomposition for simple cases.
 """
 
@@ -92,6 +93,7 @@ RVLM_COUNTING_PROMPT_MINIMAL = """You are a video object counting agent with acc
 
 Available tools: get_video_metadata, sample_frames, sample_clip, split_into_segments,
 resize_frames, vlm_count, vlm_describe, count_in_segments.
+{{custom_tools_section}}
 
 Variables: video_path, question.
 

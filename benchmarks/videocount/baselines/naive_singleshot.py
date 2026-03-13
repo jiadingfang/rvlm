@@ -144,7 +144,7 @@ def call_anthropic(frames: list[np.ndarray], question: str, model: str, max_toke
     return text, usage
 
 
-def call_gemini(frames: list[np.ndarray], question: str, model: str, max_tokens: int = 64) -> tuple[str, dict]:
+def call_gemini(frames: list[np.ndarray], question: str, model: str, max_tokens: int = 1024) -> tuple[str, dict]:
     """Call Gemini API with frames as inline images."""
     from google import genai
     from google.genai import types

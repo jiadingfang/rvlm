@@ -50,6 +50,14 @@ class GeminiVLMClient(BaseLM):
             config=types.GenerateContentConfig(max_output_tokens=self.max_tokens),
         )
         self._update_usage(resp)
+        if resp.text is None:
+            finish_reason = (
+                resp.candidates[0].finish_reason if resp.candidates else "unknown"
+            )
+            raise RuntimeError(
+                f"Gemini returned empty response (safety filter or empty generation); "
+                f"finish_reason={finish_reason}"
+            )
         return resp.text.strip()
 
     async def acompletion(self, prompt: str | dict[str, Any]) -> str:
@@ -76,7 +84,7 @@ class GeminiVLMClient(BaseLM):
 
         if video_path is not None:
             file_ref = self._upload_video(video_path)
-            parts = [file_ref, types.Part.from_text(prompt)]
+            parts = [file_ref, types.Part.from_text(text=prompt)]
         else:
             parts = []
             for frame in frames:
@@ -84,7 +92,7 @@ class GeminiVLMClient(BaseLM):
                 b64 = frame_to_base64(frame)
                 img_bytes = base64.b64decode(b64)
                 parts.append(types.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"))
-            parts.append(types.Part.from_text(prompt))
+            parts.append(types.Part.from_text(text=prompt))
 
         resp = client.models.generate_content(
             model=self.model_name,
@@ -92,6 +100,14 @@ class GeminiVLMClient(BaseLM):
             config=types.GenerateContentConfig(max_output_tokens=self.max_tokens),
         )
         self._update_usage(resp)
+        if resp.text is None:
+            finish_reason = (
+                resp.candidates[0].finish_reason if resp.candidates else "unknown"
+            )
+            raise RuntimeError(
+                f"Gemini returned empty response (safety filter or empty generation); "
+                f"finish_reason={finish_reason}"
+            )
         return resp.text.strip()
 
     def _upload_video(self, video_path: str):
